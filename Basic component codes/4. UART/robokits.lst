@@ -1,0 +1,203 @@
+   1               		.file	"robokits.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	LED1ON
+  18               	LED1ON:
+  19               	.LFB7:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 AF9A      		sbi 53-32,7
+  25               	/* epilogue start */
+  26 0002 0895      		ret
+  27               	.LFE7:
+  29               	.global	LED1OFF
+  31               	LED1OFF:
+  32               	.LFB8:
+  33               	.LM3:
+  34               	/* prologue: function */
+  35               	/* frame size = 0 */
+  36               	.LM4:
+  37 0004 AF98      		cbi 53-32,7
+  38               	/* epilogue start */
+  39 0006 0895      		ret
+  40               	.LFE8:
+  42               	.global	TOGGLELED1
+  44               	TOGGLELED1:
+  45               	.LFB9:
+  46               	.LM5:
+  47               	/* prologue: function */
+  48               	/* frame size = 0 */
+  49               	.LM6:
+  50 0008 AF9B      		sbis 53-32,7
+  51 000a 00C0      		rjmp .L6
+  52 000c AF98      		cbi 53-32,7
+  53 000e 0895      		ret
+  54               	.L6:
+  55 0010 AF9A      		sbi 53-32,7
+  56 0012 0895      		ret
+  57               	.LFE9:
+  59               	.global	LED2ON
+  61               	LED2ON:
+  62               	.LFB10:
+  63               	.LM7:
+  64               	/* prologue: function */
+  65               	/* frame size = 0 */
+  66               	.LM8:
+  67 0014 AE9A      		sbi 53-32,6
+  68               	/* epilogue start */
+  69 0016 0895      		ret
+  70               	.LFE10:
+  72               	.global	LED2OFF
+  74               	LED2OFF:
+  75               	.LFB11:
+  76               	.LM9:
+  77               	/* prologue: function */
+  78               	/* frame size = 0 */
+  79               	.LM10:
+  80 0018 AE98      		cbi 53-32,6
+  81               	/* epilogue start */
+  82 001a 0895      		ret
+  83               	.LFE11:
+  85               	.global	TOGGLELED2
+  87               	TOGGLELED2:
+  88               	.LFB12:
+  89               	.LM11:
+  90               	/* prologue: function */
+  91               	/* frame size = 0 */
+  92               	.LM12:
+  93 001c AE9B      		sbis 53-32,6
+  94 001e 00C0      		rjmp .L14
+  95 0020 AE98      		cbi 53-32,6
+  96 0022 0895      		ret
+  97               	.L14:
+  98 0024 AE9A      		sbi 53-32,6
+  99 0026 0895      		ret
+ 100               	.LFE12:
+ 102               	.global	SWITCH1ON
+ 104               	SWITCH1ON:
+ 105               	.LFB13:
+ 106               	.LM13:
+ 107               	/* prologue: function */
+ 108               	/* frame size = 0 */
+ 109               	.LM14:
+ 110 0028 80B3      		in r24,48-32
+ 111 002a 8295      		swap r24
+ 112 002c 8695      		lsr r24
+ 113 002e 8695      		lsr r24
+ 114 0030 8370      		andi r24,lo8(3)
+ 115 0032 8095      		com r24
+ 116 0034 8170      		andi r24,lo8(1)
+ 117               	/* epilogue start */
+ 118 0036 0895      		ret
+ 119               	.LFE13:
+ 121               	.global	SWITCH1OFF
+ 123               	SWITCH1OFF:
+ 124               	.LFB14:
+ 125               	.LM15:
+ 126               	/* prologue: function */
+ 127               	/* frame size = 0 */
+ 128               	.LM16:
+ 129 0038 80B3      		in r24,48-32
+ 130 003a 8074      		andi r24,lo8(64)
+ 131               	/* epilogue start */
+ 132 003c 0895      		ret
+ 133               	.LFE14:
+ 135               		.data
+ 136               	.LC0:
+ 137 0000 0D0A 0A53 		.ascii	"\r\n\nS"
+ 138 0004 616D 706C 		.string	"ample code made by Robokits India for RHINO robot control board."
+ 138      6520 636F 
+ 138      6465 206D 
+ 138      6164 6520 
+ 138      6279 2052 
+ 139               	.LC1:
+ 140 0045 0D0A 0A56 		.string	"\r\n\nVisit Us at WWW.ROBOKITS.CO.IN. "
+ 140      6973 6974 
+ 140      2055 7320 
+ 140      6174 2057 
+ 140      5757 2E52 
+ 141               		.text
+ 142               	.global	main
+ 144               	main:
+ 145               	.LFB15:
+ 146               	.LM17:
+ 147               	/* prologue: function */
+ 148               	/* frame size = 0 */
+ 149               	.LM18:
+ 150 003e A69A      		sbi 52-32,6
+ 151               	.LM19:
+ 152 0040 A79A      		sbi 52-32,7
+ 153               	.LM20:
+ 154 0042 969A      		sbi 50-32,6
+ 155               	.LM21:
+ 156               	/* #APP */
+ 157               	 ;  28 "robokits.c" 1
+ 158 0044 7894      		sei
+ 159               	 ;  0 "" 2
+ 160               	.LM22:
+ 161               	/* #NOAPP */
+ 162 0046 60E0      		ldi r22,lo8(115200)
+ 163 0048 72EC      		ldi r23,hi8(115200)
+ 164 004a 81E0      		ldi r24,hlo8(115200)
+ 165 004c 90E0      		ldi r25,hhi8(115200)
+ 166 004e 0E94 0000 		call UART_INIT
+ 167               	.LBB4:
+ 168               	.LBB5:
+ 169               	.LM23:
+ 170 0052 AF9A      		sbi 53-32,7
+ 171               	.LBE5:
+ 172               	.LBE4:
+ 173               	.LM24:
+ 174 0054 80E0      		ldi r24,lo8(.LC0)
+ 175 0056 90E0      		ldi r25,hi8(.LC0)
+ 176 0058 0E94 0000 		call UART_PRINT
+ 177               	.LM25:
+ 178 005c 80E0      		ldi r24,lo8(.LC1)
+ 179 005e 90E0      		ldi r25,hi8(.LC1)
+ 180 0060 0E94 0000 		call UART_PRINT
+ 181               	.L26:
+ 182               	.LM26:
+ 183 0064 0E94 0000 		call UART_GETCHAR
+ 184               	.LM27:
+ 185 0068 8F3F      		cpi r24,255
+ 186 006a 9105      		cpc r25,__zero_reg__
+ 187               	.LVL0:
+ 188 006c 01F0      		breq .+2
+ 189 006e 04F4      		brge .L26
+ 190               	.LM28:
+ 191 0070 0E94 0000 		call UART_PUTCHAR
+ 192               	.LVL1:
+ 193 0074 00C0      		rjmp .L26
+ 194               	.LFE15:
+ 284               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 robokits.c
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:18     .text:00000000 LED1ON
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:31     .text:00000004 LED1OFF
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:44     .text:00000008 TOGGLELED1
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:61     .text:00000014 LED2ON
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:74     .text:00000018 LED2OFF
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:87     .text:0000001c TOGGLELED2
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:104    .text:00000028 SWITCH1ON
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:123    .text:00000038 SWITCH1OFF
+C:\DOCUME~1\Sandeep\LOCALS~1\Temp/ccPzkfCw.s:144    .text:0000003e main
+
+UNDEFINED SYMBOLS
+UART_INIT
+UART_PRINT
+UART_GETCHAR
+UART_PUTCHAR
+__do_copy_data
