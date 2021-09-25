@@ -1,0 +1,13 @@
+int main(void)
+{
+	INIT();
+	LED1ON();	
+	
+	while(1)
+	{
+		if(SWITCH1ON())			//Toggle led2 on switch press
+			TOGGLELED2();
+
+		DELAYMS(50);
+	}
+}

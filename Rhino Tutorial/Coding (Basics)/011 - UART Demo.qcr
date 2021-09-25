@@ -1,0 +1,21 @@
+#define UART_BAUD_RATE	115200
+
+int main(void)
+{
+	int i;
+	INIT();
+	UART_INIT(UART_BAUD_RATE);	
+	LED1ON();
+    	UART_PRINT("\r\n\nSample code made by Robokits India for RHINO robot control board.");
+	UART_PRINT("\r\n\nVisit Us at WWW.ROBOKITS.CO.IN. ");
+
+	
+	while(1)
+	{
+		i=UART_GETCHAR();
+		if(i<256)
+		{
+			UART_PUTCHAR(i);
+		}
+	}
+}

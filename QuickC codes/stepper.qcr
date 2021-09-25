@@ -1,0 +1,15 @@
+int main(void)
+{
+	INIT();
+	STEPINIT(200);
+	LED2OFF();
+	LED2ON();
+
+	for(;1 ;)
+	{
+		STEP1PLUS();
+		DELAYUS(2000);
+	
+	}
+
+}

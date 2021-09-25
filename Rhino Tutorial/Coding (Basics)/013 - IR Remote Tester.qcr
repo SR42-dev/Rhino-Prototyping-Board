@@ -1,0 +1,21 @@
+int main(void)
+{
+	int num;
+     char buffer[7];
+	INIT();
+	LED1ON();
+	UART_INIT(9600);
+
+	while(1)
+	{
+		num=GETRC5();
+		//if(num<255)
+		{
+			itoa( num , buffer, 10);
+			UART_PRINT(buffer);
+			UART_PRINT("\n\r");
+		}
+		DELAYMS(50);
+		TOGGLELED2();	
+	}
+}

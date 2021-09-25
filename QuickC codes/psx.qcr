@@ -1,0 +1,147 @@
+int main(void)
+{
+	int i,uart_state,c;
+	char buffer[10],temp,speed, speed1;
+
+	UART_INIT(115200);
+	INIT();
+	MOTORINIT();
+	PSXINIT();
+	LED2OFF();
+	LED2ON();
+	
+
+	while (1) 
+	{
+		PSXPOLL(); 
+
+		if(LJOYY>133)
+		{
+			speed1=(LJOYY-128)* .665 + 15;
+			if((RJOYX>133) || (LJOYX>133))
+			{
+				RMF(speed1);
+				LMS();
+			}
+			else if((RJOYX<123) || (LJOYX<123))
+			{
+				LMF(speed1);
+				RMS();
+			}
+			else
+			{
+				BACKWARD(speed1);
+			}
+		}
+		else if(LJOYY<123)
+		{
+			speed1=(128-LJOYY)* .665 + 15;
+			if((RJOYX>133) || (LJOYX>230))
+			{
+				RMB(speed1);
+				LMS();
+			}
+			else if((RJOYX<123) || (LJOYX<25))
+			{
+				LMB(speed1);
+				RMS();
+			}
+			else
+			{
+				FORWARD(speed1);
+			}			
+		}
+		else if(LJOYX<123)
+		{
+			LEFT((128-LJOYX)* .665 + 15);
+		}
+		else if(LJOYX>133)
+		{
+			RIGHT((LJOYX-128)* .665 + 15);
+		}
+		else if(RJOYX<123)
+		{
+			LEFT((128-RJOYX)* .665 + 15);
+		}
+		else if(RJOYX>133)
+		{
+			RIGHT((RJOYX-128)* .665 + 15);
+		}
+		else
+		{
+			STOP();
+		}
+		
+		
+		//UART_PRINT("RJOYX=");
+		itoa(LJOYX,buffer,10);
+		UART_PRINT(buffer);
+		UART_PRINT(" ");
+		
+		//UART_PRINT("RJOYY=");
+		itoa(LJOYY,buffer,10);
+		UART_PRINT(buffer);
+		UART_PRINT(" ");
+		
+		itoa(RJOYX,buffer,10);
+		UART_PRINT(buffer);
+		UART_PRINT(" ");
+		
+		itoa(RJOYY,buffer,10);
+		UART_PRINT(buffer);
+		UART_PRINT(" ");		
+		
+		if(PSX_L1==1)
+			UART_PRINT( "L1 ");
+		
+		if(PSX_L2==1)
+			UART_PRINT( "L2 ");
+		
+		if(PSX_R1==1)
+			UART_PRINT( "R1 ");
+		
+		if(PSX_R2==1)
+			UART_PRINT( "R2 ");
+			
+		if(PSX_UP==1)
+			UART_PRINT( "UP ");
+		
+		if(PSX_DN==1)
+			UART_PRINT( "DN ");
+		
+		if(PSX_LF==1)
+			UART_PRINT( "LF ");
+		
+		if(PSX_RG==1)
+			UART_PRINT( "RG ");
+		
+		if(PSX_A==1)
+			UART_PRINT( "A ");
+		
+		if(PSX_X==1)
+			UART_PRINT( "X ");
+		
+		if(PSX_D==1)
+			UART_PRINT( "D ");
+		
+		if(PSX_O==1)
+			UART_PRINT( "O ");
+		
+		if(PSX_ST==1)
+			UART_PRINT( "ST ");
+		
+		if(PSX_SL==1)
+			UART_PRINT( "SL ");	
+		
+		if(PSX_JL==1)
+			UART_PRINT( "JL ");
+		
+		if(PSX_JR==1)
+			UART_PRINT( "JR ");	
+			
+		UART_PRINT("\n\r");
+		//--------------------------------------
+		
+		DELAYMS(20);
+	}
+}

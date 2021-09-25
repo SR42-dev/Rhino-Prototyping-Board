@@ -1,0 +1,21 @@
+int main(void)
+{
+	INIT();
+	LED2OFF();
+	LED2ON();
+	LCD_INIT(LCD_DISP_ON_CURSOR_BLINK);
+	LCD_PRINT("ROBOKITS.CO.IN");
+	LCD_GOTOXY(5,2);
+	LCD_PRINT("CENTER");	
+	while(1)
+	{
+		TOGGLELED1();
+		TOGGLELED2();
+		_delay_ms(100);
+		if(SWITCH1ON())
+		{
+			LCD_CLRSCR();
+			LCD_PUTC('C');			
+		}
+	}
+}

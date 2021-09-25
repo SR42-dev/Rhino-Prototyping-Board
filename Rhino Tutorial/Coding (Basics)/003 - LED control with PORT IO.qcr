@@ -1,0 +1,15 @@
+int main(void)
+{
+	INIT();
+	PINMODE(22,1);
+	PINMODE(23,1);
+	while(1)
+		{
+		DIGITALWRITE(22,0);
+		DIGITALWRITE(23,1);
+		DELAYMS(100);
+		DIGITALWRITE(22,1);
+		DIGITALWRITE(23,0);
+		DELAYMS(100);
+		}
+}

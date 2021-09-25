@@ -1,0 +1,39 @@
+#include <stdbool.h> 
+extern volatile unsigned char LJOYX,LJOYY,RJOYX,RJOYY;
+extern volatile bool PSX_L1,PSX_R1,PSX_L2,PSX_R2,PSX_SL,PSX_ST,PSX_JL,PSX_JR;
+extern volatile bool PSX_UP,PSX_DN,PSX_LF,PSX_RG,PSX_A,PSX_O,PSX_X,PSX_D;
+
+int main(void)
+{
+	int cnt;
+	INIT();
+	PSXINIT();
+	PINMODE(6,1);		//PA6 Direction
+	PINMODE(7,1);		//PA6 Pulse
+	cnt=10;
+	while(1)
+	{
+		PSXPOLL();
+		if(PSX_A)
+			cnt+=10;
+		else if (PSX_X)
+			cnt-=10;
+
+		if(PSX_O)
+			DIGITALWRITE(6,0);
+		else
+			DIGITALWRITE(6,1);
+
+		if(cnt<10)
+			cnt=10;
+		else if(cnt>10000)
+			cnt=10000;
+
+		if(DIGITALREAD(7))
+			DIGITALWRITE(7,0);
+		else
+			DIGITALWRITE(7,1);
+		DELAYUS(cnt);
+		TOGGLELED1();
+	}
+}

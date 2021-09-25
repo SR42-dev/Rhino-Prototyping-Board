@@ -1,0 +1,15 @@
+int main(void)
+{
+	INIT();
+	PINMODE(30,0);
+	DIGITALWRITE(30,1);
+	LED1ON();
+	while(1)
+	{
+		if(DIGITALREAD(30))			
+			LED2OFF();
+		else
+			LED2ON();
+		DELAYUS(100);
+	}
+}

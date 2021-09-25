@@ -1,0 +1,17 @@
+int main(void)
+{
+    char buffer[7];
+    int  num;
+	INIT();
+	LCD_INIT(LCD_DISP_ON);
+	ADCINIT();
+	while (1) 
+	{
+		num=GETADC(0);
+		LCD_CLRSCR();
+		itoa( num , buffer, 10);
+		LCD_PRINT("ADC Value : ");
+		LCD_PRINT(buffer);
+		DELAYMS(100);		
+	}
+}

@@ -1,0 +1,23 @@
+int main(void)
+{
+	INIT();
+	SERVOINIT();
+	LED2OFF();
+	LED2ON();
+	SERVOSPEED[0]=0;
+	SERVOSPEED[1]=1;
+	SERVO[0]=50;
+	SERVO[1]=50;
+
+	
+
+	while (1) 
+	{
+		SERVO[0]=200;
+		SERVO[1]=200;		
+		DELAYS(3);
+		SERVO[0]=50;
+		SERVO[1]=50;		
+		DELAYS(3);		
+	}
+}

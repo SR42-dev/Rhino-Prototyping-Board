@@ -1,0 +1,15 @@
+int main(void)
+{
+	INIT();
+	I2C_INIT();
+	LED2OFF();
+	LED2ON();
+	while(1)
+	{
+		for(int servo=0;servo<4000;servo++) 
+		{
+			I2C_SERVOSET(3,servo);		
+			DELAYMS(5);
+		}
+	}
+}

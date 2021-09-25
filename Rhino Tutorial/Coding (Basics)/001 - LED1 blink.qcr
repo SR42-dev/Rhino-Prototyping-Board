@@ -1,0 +1,11 @@
+int main(void)
+{
+	INIT();						//Initialize all selected functions and define varialbels and basic functions
+	while(1)						//Infinite loop
+		{
+		LED1ON();				//Turn LED 1 On
+		DELAYMS(100);		//Wait for 100 miliseconds
+		LED1OFF();				//Turn LED 1 Off
+		DELAYMS(100);		//Wait for 100 miliseconds
+		}				// Go to first line in while loop as argument is '1' so its infinite loop
+}

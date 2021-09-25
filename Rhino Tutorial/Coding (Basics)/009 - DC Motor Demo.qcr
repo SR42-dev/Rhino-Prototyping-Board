@@ -1,0 +1,83 @@
+int main(void)
+{
+	int i;
+	char buffer[7];
+	INIT();
+	MOTORINIT();
+	LCD_INIT(LCD_DISP_ON);
+	LCD_PRINT("Motor Demo");
+	while(1)
+		{
+		//=====================Forward direction increasing speed
+		
+			for (i=30;i<100;i++)
+			{
+				LMF(i);
+				LCD_GOTOXY(0,1);
+				LCD_PRINT("Speed : ");
+				itoa( i , buffer, 10);
+				LCD_PRINT(buffer);
+				DELAYMS(100);
+			}
+			TOGGLELED1();
+			DELAYS(2);
+			TOGGLELED1();
+			LCD_GOTOXY(0,1);
+			LCD_PRINT("\n");
+		//=====================Forward direction decreasing speed
+		
+			for (i=99;i>30;i--)
+			{
+				LMF(i);
+				LCD_GOTOXY(0,1);
+				LCD_PRINT("Speed : ");
+				itoa( i , buffer, 10);
+				LCD_PRINT(buffer);
+				DELAYMS(100);
+			}
+			TOGGLELED1();
+			LCD_GOTOXY(0,1);
+			LCD_PRINT("Motor Stopped");
+			LMS();
+			DELAYS(2);
+			LCD_GOTOXY(0,1);
+			LCD_PRINT("                           ");
+			
+		//=====================Backward direction increasing speed
+			
+			for (i=30;i<100;i++)
+			{
+				LMB(i);
+				LCD_GOTOXY(0,1);
+				LCD_PRINT("Speed : ");
+				itoa( i , buffer, 10);
+				LCD_PRINT(buffer);
+				DELAYMS(100);
+			}
+			TOGGLELED1();
+			DELAYS(2);
+			TOGGLELED1();
+			LCD_GOTOXY(0,1);
+			LCD_PRINT("\n");
+		//=====================Backward direction decreasing speed			
+					
+			for (i=99;i>30;i--)
+			{
+				LMB(i);
+				LCD_GOTOXY(0,1);
+				LCD_PRINT("Speed : ");
+				itoa( i , buffer, 10);
+				LCD_PRINT(buffer);
+				DELAYMS(100);
+			}
+			TOGGLELED1();
+			LCD_GOTOXY(0,1);
+			LCD_PRINT("Motor Stopped");
+			LMS();
+			DELAYS(2);
+			LCD_GOTOXY(0,1);
+			LCD_PRINT("                           ");
+		}
+		
+		
+}

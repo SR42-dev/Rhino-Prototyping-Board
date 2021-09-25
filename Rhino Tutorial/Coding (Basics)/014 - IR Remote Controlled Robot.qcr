@@ -1,0 +1,43 @@
+int main(void)
+{
+	
+	int num,del=85;
+	INIT();
+	MOTORINIT();
+	LED2ON();
+	while(1)
+	{
+		num=GETRC5();				//---Get RC5 Input
+		if (num==32)					//---Check if input is for forward keypress
+		{
+			FORWARD(100);
+			LED1ON();
+			DELAYMS(del);
+		}
+		else if (num==33)				//---Check if input is for backward keypress
+		{
+			BACKWARD(100);
+			LED1ON();
+			DELAYMS(del);
+		}
+		else if (num==16)				//---Check if input is for right keypress
+		{
+			RIGHT(100);
+			LED1ON();
+			DELAYMS(del);
+		}
+		else if (num==17)				//---Check if input is for left keypress
+		{
+			LEFT(100);
+			LED1ON();
+			DELAYMS(del);
+		}
+		else if (num==255)			//---If no key is pressed stop motors
+		{
+			STOP();
+			LED1OFF();
+		}
+
+	}
+}
+

@@ -1,0 +1,14 @@
+int main(void)
+{
+	INIT();
+	
+	LED1ON();
+	while(1)
+	{
+		if(SWITCH1ON())			
+			LED2ON();
+		else
+			LED2OFF();
+		DELAYUS(100);
+	}
+}

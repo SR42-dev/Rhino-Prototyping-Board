@@ -1,0 +1,47 @@
+int main(void)
+{
+	INIT();
+	MOTORINIT();
+	PINMODE(0,0);
+	PINMODE(1,0);
+	PINMODE(2,0);
+	PINMODE(3,0);
+	DIGITALWRITE(0,1);
+	DIGITALWRITE(1,1);
+	DIGITALWRITE(2,1);
+	DIGITALWRITE(3,1);
+	while(1)
+	{
+	//=================FORWARD ON SW0
+		if(! DIGITALREAD(0))			
+		{
+			FORWARD(100);
+			LED1ON();
+		}
+	//=================BACKWARD ON SW1
+		else if(! DIGITALREAD(1))			
+		{
+			BACKWARD(100);
+			LED1ON();
+		}
+	//=================LEFT ON SW2
+		else if(! DIGITALREAD(2))			
+		{
+			LEFT(100);
+			LED1ON();
+		}
+	//=================RIGHT ON SW3
+		else if(! DIGITALREAD(3))			
+		{
+			RIGHT(100);
+			LED1ON();
+		}
+	//=================STOP ALL MOTORS IF NO SWITCH IS PRESSED
+		else
+		{
+			STOP();
+			LED1OFF();
+		}
+		DELAYMS(100);
+	}
+}

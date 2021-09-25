@@ -1,0 +1,32 @@
+int main(void)
+{
+	INIT();
+	MOTORINIT();
+	LED2OFF();
+	LED2ON();
+	while(1)
+	{
+		TOGGLELED1();
+		TOGGLELED2();
+		for(int i=0;i<100;i++)
+		{
+			FORWARD(i);
+			DELAYMS(30);			
+		}
+		for(int i=100;i>0;i--)
+		{
+			FORWARD(i);
+			DELAYMS(30);			
+		}
+		for(int i=0;i<100;i++)
+		{
+			BACKWARD(i);
+			DELAYMS(30);			
+		}
+		for(int i=100;i>0;i--)
+		{
+			BACKWARD(i);
+			DELAYMS(30);			
+		}
+	}
+}
